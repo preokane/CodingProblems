@@ -12,38 +12,39 @@ import static java.util.stream.Collectors.toList;
 
 public class TimeInWords {
 
-	private static Map<Integer,String> englishDict = new HashMap<>();
+	private static List<String> englishDict = new ArrayList<>();
 	static {
-		englishDict.put(1, "one");
-		englishDict.put(2, "two");
-		englishDict.put(3, "three");
-		englishDict.put(4, "four");
-		englishDict.put(5, "five");
-		englishDict.put(6, "six");
-		englishDict.put(7, "seven");
-		englishDict.put(8, "eight");
-		englishDict.put(9, "nine");
-		englishDict.put(10, "ten");
-		englishDict.put(11, "eleven");
-		englishDict.put(12, "twelve");
-		englishDict.put(13, "thirteen");
-		englishDict.put(14, "fourteen");
-		englishDict.put(15, "quarter");
-		englishDict.put(16, "sixteen");
-		englishDict.put(17, "seventeen");
-		englishDict.put(18, "eighteen");
-		englishDict.put(19, "nineteen");
-		englishDict.put(20, "twenty");
-		englishDict.put(21, "twenty one");
-		englishDict.put(22, "twenty two");
-		englishDict.put(23, "twenty three");
-		englishDict.put(24, "twenty four");
-		englishDict.put(25, "twenty five");
-		englishDict.put(26, "twenty six");
-		englishDict.put(27, "twnety seven");
-		englishDict.put(28, "twenty eight");
-		englishDict.put(29, "twenty nine");
-		englishDict.put(30, "half");
+		englishDict.add("zero");
+		englishDict.add("one");
+		englishDict.add("two");
+		englishDict.add("three");
+		englishDict.add("four");
+		englishDict.add("five");
+		englishDict.add("six");
+		englishDict.add("seven");
+		englishDict.add("eight");
+		englishDict.add("nine");
+		englishDict.add("ten");
+		englishDict.add("eleven");
+		englishDict.add("twelve");
+		englishDict.add("thirteen");
+		englishDict.add("fourteen");
+		englishDict.add("quarter");
+		englishDict.add("sixteen");
+		englishDict.add("seventeen");
+		englishDict.add("eighteen");
+		englishDict.add("nineteen");
+		englishDict.add("twenty");
+		englishDict.add("twenty one");
+		englishDict.add("twenty two");
+		englishDict.add("twenty three");
+		englishDict.add("twenty four");
+		englishDict.add("twenty five");
+		englishDict.add("twenty six");
+		englishDict.add("twnety seven");
+		englishDict.add("twenty eight");
+		englishDict.add("twenty nine");
+		englishDict.add("half");
 	}
 
     public static String timeInWords(int h, int m) {
@@ -51,11 +52,11 @@ public class TimeInWords {
             return englishDict.get(h) + " o' clock";
         String joiner = "";
         if (m%30 != 15 && m%30 != 0)
-            joiner = m%30 == 1 ? " minute" : " minutes";
+            joiner = m == 1 || m == 59 ? " minute" : " minutes";
         if (m <= 30)
             return englishDict.get(m) + joiner + " past " + englishDict.get(h);
         else 
-            return englishDict.get(30-m%30) + joiner + " to " + englishDict.get(h+1);
+            return englishDict.get(30-m%30) + joiner + " to " + englishDict.get(h);
     }
 
     public static void main(String[] args) throws IOException {
